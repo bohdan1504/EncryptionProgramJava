@@ -11,24 +11,9 @@ public class EncryptionProgram {
     private String line;
     private char[] letters;
 
-    JButton newKeyButton;
-//    JButton getKeyButton;
-//    JButton encryptButton;
-//    JButton decryptButton;
-//    JButton quitButton;
-//
-//    JTextField textField;
-//    JLabel label;
-//
-//    JPanel panel1;
-//    JPanel panel2;
 
 
     EncryptionProgram(){
-
-//        this.setSize(500,500);
-//        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//        this.setLayout(null);
         
         scanner = new Scanner(System.in);
         random = new Random();
@@ -36,29 +21,12 @@ public class EncryptionProgram {
         shuffledList = new ArrayList<>();
         character = ' ';
 
-//        newKeyButton = new JButton("New key");
-//        getKeyButton = new JButton("Get key");
-//        encryptButton = new JButton("Encrypt");
-//        decryptButton = new JButton("Decrypt");
-//        quitButton = new JButton("Quit");
-//
-//        panel1.setLayout(new BoxLayout(panel1, BoxLayout.Y_AXIS));
-//        panel1.add(newKeyButton);
-//        panel1.add(getKeyButton);
-//        panel1.add(encryptButton);
-//        panel1.add(decryptButton);
-//        panel1.add(quitButton);
-
-
         newKey();
         askQuestion();
-        
-//        this.add(panel1);
-//        this.add(panel2);
-//        this.setVisible(true);
 
     }
 
+    // ask input from the user
     private void askQuestion(){
         while(true){
             System.out.println("*************************************************");
@@ -84,6 +52,7 @@ public class EncryptionProgram {
         }
     }
 
+    // generate new key
     private void newKey(){
         character = ' ';
         list.clear();
@@ -98,7 +67,7 @@ public class EncryptionProgram {
         System.out.println("*A new key has been generated*");
     }
 
-
+    // display the key
     private void getKey(){
         System.out.println("Key: ");
         for (Character x : list){
@@ -111,6 +80,7 @@ public class EncryptionProgram {
         System.out.println();
     }
 
+    // a message from user to be encrypted
     private void encrypt(){
         System.out.println("Enter a message to be encrypted: ");
         String message = scanner.nextLine();
@@ -132,6 +102,7 @@ public class EncryptionProgram {
 //        System.out.println(letters);
     }
 
+    // a message from user to be decrypted
     private void decrypt(){
         System.out.println("Enter a message to be decrypted: ");
         String message = scanner.nextLine();
@@ -153,6 +124,7 @@ public class EncryptionProgram {
 //        System.out.println(letters);
     }
 
+    // quit the program
     private void quit(){
         System.out.println("Thank you! Have a nice day, bro");
         System.exit(0);
