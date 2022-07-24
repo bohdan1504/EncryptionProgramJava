@@ -11,7 +11,7 @@ public class EncryptionProgram {
     private String line;
     private char[] letters;
 
-//    JButton newKeyButton;
+    JButton newKeyButton;
 //    JButton getKeyButton;
 //    JButton encryptButton;
 //    JButton decryptButton;
