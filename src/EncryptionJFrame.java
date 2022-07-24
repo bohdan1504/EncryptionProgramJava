@@ -89,7 +89,6 @@ public class EncryptionJFrame extends JFrame implements ActionListener {
 
 
         textField = new JTextArea();
-        textField.setPreferredSize(new Dimension(500,400));
         textField.getPreferredScrollableViewportSize();
         textField.setToolTipText("Enter your command...");
         textField.setText("Enter a message to encrypt...");
@@ -102,6 +101,8 @@ public class EncryptionJFrame extends JFrame implements ActionListener {
         JScrollPane areaScrollPane = new JScrollPane(textField);
         areaScrollPane.setVerticalScrollBarPolicy(
                 ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        areaScrollPane.setPreferredSize(new Dimension(500,400));
+
 
         panel2.add(areaScrollPane);
 
