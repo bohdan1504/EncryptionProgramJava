@@ -1,7 +1,9 @@
 public class Main {
     public static void main(String[] args) {
 
-        EncryptionProgram ep = new EncryptionProgram();
+//        EncryptionProgram ep = new EncryptionProgram();
+
+        new EncryptionJFrame();
 
 
     }
