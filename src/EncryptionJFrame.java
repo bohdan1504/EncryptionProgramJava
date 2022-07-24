@@ -5,7 +5,6 @@ import java.awt.event.ActionListener;
 import java.util.*;
 import java.awt.FlowLayout;
 import javax.swing.JFrame;
-import javax.swing.JSplitPane;
 
 public class EncryptionJFrame extends JFrame implements ActionListener {
 
@@ -39,14 +38,20 @@ public class EncryptionJFrame extends JFrame implements ActionListener {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLayout(new FlowLayout());
 
-//        scanner = new Scanner(System.in);
+
         random = new Random();
         list = new ArrayList();
         shuffledList = new ArrayList<>();
         character = ' ';
 
         newKeyButton = new JButton("New key");
-        newKeyButton.addActionListener(e -> this.newKey());
+        newKeyButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                newKey();
+                selectableLabel1.setText("*New key has been generated*");
+            }
+        });
 
         getKeyButton = new JButton("Get key");
         getKeyButton.addActionListener((e -> this.getKey()));
@@ -55,7 +60,7 @@ public class EncryptionJFrame extends JFrame implements ActionListener {
         encryptButton.addActionListener(e -> this.encrypt());
 
         decryptButton = new JButton("Decrypt");
-        decryptButton.setEnabled(false);
+//        decryptButton.setEnabled(false);
         decryptButton.addActionListener(e -> this.decrypt());
 
         quitButton = new JButton("Quit");
@@ -72,21 +77,33 @@ public class EncryptionJFrame extends JFrame implements ActionListener {
 
         panel2 = new JPanel();
         panel2.setLayout(new BoxLayout(panel2, BoxLayout.Y_AXIS));
+        panel2.setPreferredSize(new Dimension(700,500));
+
 
         programTitle = new JLabel("ENCRYPTION PROGRAM");
         programTitle.setFont(new Font("Comic Sans", Font.BOLD, 48));
-        programTitle.setPreferredSize(new Dimension(500,50));
+        programTitle.setPreferredSize(new Dimension(600,50));
+//        programTitle.setSize(600,50);
+//        programTitle.setBounds(0,0,600,50);
         panel2.add(programTitle);
 
+
+
         textField = new JTextArea();
+        textField.setPreferredSize(new Dimension(500,400));
+        textField.getPreferredScrollableViewportSize();
         textField.setToolTipText("Enter your command...");
         textField.setText("Enter text to encrypt...");
         textField.setForeground(Color.gray);
-        textField.setPreferredSize(new Dimension(500,400));
-        panel2.add(textField);
+        textField.setLineWrap(true);
+        textField.setWrapStyleWord(true);
 
-//        label1 = new JLabel();
-//        label1.setPreferredSize(new Dimension(500,20));
+
+        JScrollPane areaScrollPane = new JScrollPane(textField);
+        areaScrollPane.setVerticalScrollBarPolicy(
+                ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+
+        panel2.add(areaScrollPane);
 
 
         // JField that mimics JLabel and can be selected
@@ -109,7 +126,10 @@ public class EncryptionJFrame extends JFrame implements ActionListener {
         panel2.add(selectableLabel2);
 
 
-        selectableLabel1.setText("Generate a new key first!");
+        selectableLabel1.setText("The default key is generated. Press \"Get key\" to reveal it.");
+
+        newKey();
+
 
         this.setLocationRelativeTo(null);
         this.add(panel1);
@@ -126,7 +146,7 @@ public class EncryptionJFrame extends JFrame implements ActionListener {
     // generate new key
     private void newKey(){
         encryptButton.setEnabled(true);
-        decryptButton.setEnabled(false);
+//        decryptButton.setEnabled(false);
         selectableLabel2.setText("");
         character = ' ';
         list.clear();
@@ -138,7 +158,7 @@ public class EncryptionJFrame extends JFrame implements ActionListener {
         }
         shuffledList = new ArrayList<>(list);
         Collections.shuffle(shuffledList);
-        selectableLabel1.setText("*New key has been generated*");
+//        selectableLabel1.setText("*New key has been generated*");
     }
 
     // display the key
@@ -166,9 +186,6 @@ public class EncryptionJFrame extends JFrame implements ActionListener {
     private void encrypt() {
         encryptedMessage = "";
         String message = textField.getText();
-//        encryptedMessage = textField.getText();
-//        textField.setText("");
-//        panel2Decrypt.setVisible(true);
 
         letters = message.toCharArray();
         for (int i = 0; i < letters.length; i++) {
@@ -187,7 +204,7 @@ public class EncryptionJFrame extends JFrame implements ActionListener {
         textField.setText(encryptedMessage);
         decryptButton.setEnabled(true);
         encryptButton.setEnabled(false);
-        selectableLabel1.setText(null);
+        selectableLabel1.setText("Your message has been encrypted!");
         selectableLabel2.setText(null);
 
     }
@@ -215,7 +232,7 @@ public class EncryptionJFrame extends JFrame implements ActionListener {
         textField.setText(decryptedMessage);
         encryptButton.setEnabled(true);
         decryptButton.setEnabled(false);
-        selectableLabel1.setText(null);
+        selectableLabel1.setText("Your message has been decrypted!");
         selectableLabel2.setText(null);
     }
 
