@@ -38,7 +38,6 @@ public class EncryptionJFrame extends JFrame implements ActionListener {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLayout(new FlowLayout());
 
-
         random = new Random();
         list = new ArrayList();
         shuffledList = new ArrayList<>();
@@ -93,7 +92,8 @@ public class EncryptionJFrame extends JFrame implements ActionListener {
         textField.setPreferredSize(new Dimension(500,400));
         textField.getPreferredScrollableViewportSize();
         textField.setToolTipText("Enter your command...");
-        textField.setText("Enter text to encrypt...");
+        textField.setText("Enter a message to encrypt...");
+        textField.setFont(new Font("Arial", Font.PLAIN, 24));
         textField.setForeground(Color.gray);
         textField.setLineWrap(true);
         textField.setWrapStyleWord(true);
